@@ -1,0 +1,939 @@
+$date
+	Tue Dec  2 00:21:59 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module pipelined_mips_test $end
+$var reg 1 ! clk $end
+$var reg 1 " reset $end
+$var integer 32 # i [31:0] $end
+$scope module processor $end
+$var wire 1 $ PcSrc $end
+$var wire 1 ! clk $end
+$var wire 1 % ex_isShift $end
+$var wire 1 & flush_req $end
+$var wire 1 " reset $end
+$var wire 5 ' wb_write_regaddr [4:0] $end
+$var wire 32 ( wb_write_memdata [31:0] $end
+$var wire 32 ) wb_read_memdata [31:0] $end
+$var wire 32 * wb_alu_result [31:0] $end
+$var wire 1 + wb_RegWrite $end
+$var wire 1 , wb_MemtoReg $end
+$var wire 1 - pc_write $end
+$var wire 32 . pc_plus_4 [31:0] $end
+$var wire 32 / pc_out [31:0] $end
+$var wire 32 0 pc_in [31:0] $end
+$var wire 5 1 mem_write_regaddr [4:0] $end
+$var wire 32 2 mem_write_memdata [31:0] $end
+$var wire 5 3 mem_rt [4:0] $end
+$var wire 32 4 mem_read_memdata [31:0] $end
+$var wire 32 5 mem_branch_target [31:0] $end
+$var wire 32 6 mem_alu_result [31:0] $end
+$var wire 1 7 mem_RegWrite $end
+$var wire 1 8 mem_MemtoReg $end
+$var wire 1 9 mem_MemWrite $end
+$var wire 1 : mem_MemRead $end
+$var wire 1 ; mem_Branch $end
+$var wire 1 < mem_AluZero $end
+$var wire 1 = ifid_write $end
+$var wire 1 > ifid_flush $end
+$var wire 32 ? if_instr [31:0] $end
+$var wire 1 @ idex_flush $end
+$var wire 5 A id_shamt [4:0] $end
+$var wire 32 B id_sext_imm [31:0] $end
+$var wire 5 C id_rt [4:0] $end
+$var wire 5 D id_rs [4:0] $end
+$var wire 32 E id_read_regdata2 [31:0] $end
+$var wire 32 F id_read_regdata1 [31:0] $end
+$var wire 5 G id_rd [4:0] $end
+$var wire 32 H id_pc_plus_4 [31:0] $end
+$var wire 6 I id_opcode [5:0] $end
+$var wire 32 J id_instr [31:0] $end
+$var wire 6 K id_funct [5:0] $end
+$var wire 1 L id_RegWrite $end
+$var wire 1 M id_RegDst $end
+$var wire 1 N id_MemtoReg $end
+$var wire 1 O id_MemWrite $end
+$var wire 1 P id_MemRead $end
+$var wire 1 Q id_Jump $end
+$var wire 1 R id_Jr $end
+$var wire 1 S id_Jal $end
+$var wire 1 T id_Branch $end
+$var wire 1 U id_AluSrc $end
+$var wire 2 V id_AluOp [1:0] $end
+$var wire 1 W forwardMem $end
+$var wire 2 X forwardB [1:0] $end
+$var wire 2 Y forwardA [1:0] $end
+$var wire 5 Z ex_write_regaddr [4:0] $end
+$var wire 5 [ ex_shamt [4:0] $end
+$var wire 32 \ ex_sext_imm [31:0] $end
+$var wire 5 ] ex_rt [4:0] $end
+$var wire 5 ^ ex_rs [4:0] $end
+$var wire 32 _ ex_read_regdata2 [31:0] $end
+$var wire 32 ` ex_read_regdata1 [31:0] $end
+$var wire 5 a ex_rd [4:0] $end
+$var wire 32 b ex_pc_plus_4 [31:0] $end
+$var wire 6 c ex_opcode [5:0] $end
+$var wire 6 d ex_funct [5:0] $end
+$var wire 32 e ex_branch_target [31:0] $end
+$var wire 32 f ex_alu_result [31:0] $end
+$var wire 32 g ex_SrcB [31:0] $end
+$var wire 32 h ex_SrcA [31:0] $end
+$var wire 1 i ex_RegWrite $end
+$var wire 1 j ex_RegDst $end
+$var wire 1 k ex_MemtoReg $end
+$var wire 1 l ex_MemWrite $end
+$var wire 1 m ex_MemRead $end
+$var wire 1 n ex_Branch $end
+$var wire 1 o ex_AluZero $end
+$var wire 1 p ex_AluSrc $end
+$var wire 2 q ex_AluOp [1:0] $end
+$var wire 4 r ex_ALUControl [3:0] $end
+$var wire 32 s dm_write_memdata [31:0] $end
+$scope module ALU $end
+$var wire 32 t a [31:0] $end
+$var wire 32 u b [31:0] $end
+$var wire 1 o Zero $end
+$var wire 4 v ALUControl [3:0] $end
+$var parameter 4 w ADD $end
+$var parameter 4 x AND $end
+$var parameter 4 y MUL $end
+$var parameter 4 z NOR $end
+$var parameter 4 { OR $end
+$var parameter 4 | SLL $end
+$var parameter 4 } SLT $end
+$var parameter 4 ~ SRL $end
+$var parameter 4 !" SUB $end
+$var reg 32 "" result [31:0] $end
+$upscope $end
+$scope module alu_ctrl $end
+$var wire 6 #" opcode [5:0] $end
+$var wire 6 $" funct [5:0] $end
+$var wire 2 %" alu_op [1:0] $end
+$var parameter 4 &" ALU_ADD $end
+$var parameter 4 '" ALU_AND $end
+$var parameter 4 (" ALU_MUL $end
+$var parameter 4 )" ALU_NOR $end
+$var parameter 4 *" ALU_OR $end
+$var parameter 4 +" ALU_SLL $end
+$var parameter 4 ," ALU_SLT $end
+$var parameter 4 -" ALU_SRL $end
+$var parameter 4 ." ALU_SUB $end
+$var parameter 6 /" FUNCT_ADD $end
+$var parameter 6 0" FUNCT_AND $end
+$var parameter 6 1" FUNCT_JR $end
+$var parameter 6 2" FUNCT_MUL $end
+$var parameter 6 3" FUNCT_NOR $end
+$var parameter 6 4" FUNCT_OR $end
+$var parameter 6 5" FUNCT_SLL $end
+$var parameter 6 6" FUNCT_SLT $end
+$var parameter 6 7" FUNCT_SRL $end
+$var parameter 6 8" FUNCT_SUB $end
+$var parameter 6 9" OP_ANDI $end
+$var parameter 6 :" OP_ORI $end
+$var reg 4 ;" ALUControl [3:0] $end
+$upscope $end
+$scope module cu $end
+$var wire 6 <" funct [5:0] $end
+$var wire 6 =" opcode [5:0] $end
+$var parameter 6 >" OP_ADDI $end
+$var parameter 6 ?" OP_ANDI $end
+$var parameter 6 @" OP_BEQ $end
+$var parameter 6 A" OP_BNE $end
+$var parameter 6 B" OP_JAL $end
+$var parameter 6 C" OP_JUMP $end
+$var parameter 6 D" OP_LW $end
+$var parameter 6 E" OP_ORI $end
+$var parameter 6 F" OP_RTYPE $end
+$var parameter 6 G" OP_SLT $end
+$var parameter 6 H" OP_SW $end
+$var reg 1 U ALUSrc $end
+$var reg 1 T Branch $end
+$var reg 1 S Jal $end
+$var reg 1 R Jr $end
+$var reg 1 Q Jump $end
+$var reg 1 P MemRead $end
+$var reg 1 O MemWrite $end
+$var reg 1 N MemtoReg $end
+$var reg 1 M RegDst $end
+$var reg 1 L RegWrite $end
+$var reg 2 I" alu_op [1:0] $end
+$upscope $end
+$scope module dmem $end
+$var wire 1 ! clk $end
+$var wire 32 J" wd [31:0] $end
+$var wire 32 K" addr [31:0] $end
+$var wire 1 9 MemWrite $end
+$var wire 1 : MemRead $end
+$var reg 1 L" mem_ready $end
+$var reg 32 M" rd [31:0] $end
+$var integer 32 N" i [31:0] $end
+$upscope $end
+$scope module ex_mem $end
+$var wire 1 ! clk $end
+$var wire 1 o ex_AluZero $end
+$var wire 32 O" ex_alu_result [31:0] $end
+$var wire 32 P" ex_branch_target [31:0] $end
+$var wire 5 Q" ex_write_regaddr [4:0] $end
+$var wire 1 " reset $end
+$var wire 1 R" write_enable $end
+$var wire 32 S" ex_write_memdata [31:0] $end
+$var wire 5 T" ex_rt [4:0] $end
+$var wire 1 i ex_RegWrite $end
+$var wire 1 k ex_MemtoReg $end
+$var wire 1 l ex_MemWrite $end
+$var wire 1 m ex_MemRead $end
+$var wire 1 n ex_Branch $end
+$var reg 1 < mem_AluZero $end
+$var reg 1 ; mem_Branch $end
+$var reg 1 : mem_MemRead $end
+$var reg 1 9 mem_MemWrite $end
+$var reg 1 8 mem_MemtoReg $end
+$var reg 1 7 mem_RegWrite $end
+$var reg 32 U" mem_alu_result [31:0] $end
+$var reg 32 V" mem_branch_target [31:0] $end
+$var reg 5 W" mem_rt [4:0] $end
+$var reg 32 X" mem_write_memdata [31:0] $end
+$var reg 5 Y" mem_write_regaddr [4:0] $end
+$upscope $end
+$scope module fwd $end
+$var wire 1 9 exmem_MemWrite $end
+$var wire 1 7 exmem_RegWrite $end
+$var wire 5 Z" exmem_rt [4:0] $end
+$var wire 5 [" exmem_write_regaddr [4:0] $end
+$var wire 5 \" memwb_write_regaddr [4:0] $end
+$var wire 1 + memwb_RegWrite $end
+$var wire 5 ]" idex_rt [4:0] $end
+$var wire 5 ^" idex_rs [4:0] $end
+$var reg 2 _" forwardA [1:0] $end
+$var reg 2 `" forwardB [1:0] $end
+$var reg 1 W forwardMem $end
+$upscope $end
+$scope module hu $end
+$var wire 1 a" ex_hazard $end
+$var wire 1 7 exmem_RegWrite $end
+$var wire 5 b" exmem_write_regaddr [4:0] $end
+$var wire 1 & flush_req $end
+$var wire 5 c" idex_write_regaddr [4:0] $end
+$var wire 5 d" ifid_rs [4:0] $end
+$var wire 5 e" ifid_rt [4:0] $end
+$var wire 1 f" mem_hazard $end
+$var wire 1 g" wb_hazard $end
+$var wire 5 h" memwb_write_regaddr [4:0] $end
+$var wire 1 + memwb_RegWrite $end
+$var wire 1 i idex_RegWrite $end
+$var wire 1 m idex_MemRead $end
+$var reg 1 @ idex_flush $end
+$var reg 1 > ifid_flush $end
+$var reg 1 = ifid_write $end
+$var reg 1 - pc_write $end
+$upscope $end
+$scope module id_ex $end
+$var wire 1 ! clk $end
+$var wire 1 @ flush $end
+$var wire 2 i" id_AluOp [1:0] $end
+$var wire 1 U id_AluSrc $end
+$var wire 1 T id_Branch $end
+$var wire 1 P id_MemRead $end
+$var wire 1 O id_MemWrite $end
+$var wire 1 N id_MemtoReg $end
+$var wire 1 M id_RegDst $end
+$var wire 1 L id_RegWrite $end
+$var wire 6 j" id_funct [5:0] $end
+$var wire 6 k" id_opcode [5:0] $end
+$var wire 5 l" id_rd [4:0] $end
+$var wire 5 m" id_rs [4:0] $end
+$var wire 5 n" id_rt [4:0] $end
+$var wire 32 o" id_sext_imm [31:0] $end
+$var wire 5 p" id_shamt [4:0] $end
+$var wire 1 " reset $end
+$var wire 32 q" id_read_regdata2 [31:0] $end
+$var wire 32 r" id_read_regdata1 [31:0] $end
+$var wire 32 s" id_pc_plus_4 [31:0] $end
+$var reg 2 t" ex_AluOp [1:0] $end
+$var reg 1 p ex_AluSrc $end
+$var reg 1 n ex_Branch $end
+$var reg 1 m ex_MemRead $end
+$var reg 1 l ex_MemWrite $end
+$var reg 1 k ex_MemtoReg $end
+$var reg 1 j ex_RegDst $end
+$var reg 1 i ex_RegWrite $end
+$var reg 6 u" ex_funct [5:0] $end
+$var reg 6 v" ex_opcode [5:0] $end
+$var reg 32 w" ex_pc_plus_4 [31:0] $end
+$var reg 5 x" ex_rd [4:0] $end
+$var reg 32 y" ex_read_regdata1 [31:0] $end
+$var reg 32 z" ex_read_regdata2 [31:0] $end
+$var reg 5 {" ex_rs [4:0] $end
+$var reg 5 |" ex_rt [4:0] $end
+$var reg 32 }" ex_sext_imm [31:0] $end
+$var reg 5 ~" ex_shamt [4:0] $end
+$upscope $end
+$scope module if_id $end
+$var wire 1 ! clk $end
+$var wire 1 > flush $end
+$var wire 32 !# if_pc_plus_4 [31:0] $end
+$var wire 1 " reset $end
+$var wire 1 "# stall $end
+$var wire 32 ## if_instr [31:0] $end
+$var reg 32 $# id_instr [31:0] $end
+$var reg 32 %# id_pc_plus_4 [31:0] $end
+$upscope $end
+$scope module imem $end
+$var wire 32 &# instr [31:0] $end
+$var wire 32 '# addr [31:0] $end
+$var integer 32 (# i [31:0] $end
+$upscope $end
+$scope module mem_wb $end
+$var wire 1 ! clk $end
+$var wire 1 8 mem_MemtoReg $end
+$var wire 1 7 mem_RegWrite $end
+$var wire 32 )# mem_alu_result [31:0] $end
+$var wire 32 *# mem_read_memdata [31:0] $end
+$var wire 5 +# mem_write_regaddr [4:0] $end
+$var wire 1 " reset $end
+$var wire 1 ,# write_enable $end
+$var reg 1 , wb_MemtoReg $end
+$var reg 1 + wb_RegWrite $end
+$var reg 32 -# wb_alu_result [31:0] $end
+$var reg 32 .# wb_read_memdata [31:0] $end
+$var reg 5 /# wb_write_regaddr [4:0] $end
+$upscope $end
+$scope module pc_reg $end
+$var wire 1 ! clk $end
+$var wire 32 0# pc_in [31:0] $end
+$var wire 1 " reset $end
+$var wire 1 - write_enable $end
+$var reg 32 1# pc_out [31:0] $end
+$upscope $end
+$scope module rf $end
+$var wire 1 ! clk $end
+$var wire 5 2# ra1 [4:0] $end
+$var wire 5 3# ra2 [4:0] $end
+$var wire 5 4# wa [4:0] $end
+$var wire 32 5# wd [31:0] $end
+$var wire 1 + we $end
+$var wire 32 6# rd2 [31:0] $end
+$var wire 32 7# rd1 [31:0] $end
+$var integer 32 8# i [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b101011 H"
+b1010 G"
+b0 F"
+b1101 E"
+b100011 D"
+b10 C"
+b11 B"
+b101 A"
+b100 @"
+b1100 ?"
+b1000 >"
+b1101 :"
+b1100 9"
+b100010 8"
+b10 7"
+b101010 6"
+b0 5"
+b100101 4"
+b100111 3"
+b11000 2"
+b1000 1"
+b100100 0"
+b100000 /"
+b100 ."
+b111 -"
+b1000 ,"
+b110 +"
+b1 *"
+b10 )"
+b101 ("
+b0 '"
+b11 &"
+b100 !"
+b111 ~
+b1000 }
+b110 |
+b1 {
+b10 z
+b101 y
+b0 x
+b11 w
+$end
+#0
+$dumpvars
+b100000 8#
+bx 7#
+bx 6#
+bx 5#
+bx 4#
+bx 3#
+bx 2#
+bx 1#
+bx 0#
+bx /#
+bx .#
+bx -#
+z,#
+bx +#
+bx *#
+bx )#
+b10000000 (#
+bx '#
+bx &#
+bx %#
+bx $#
+bx ##
+0"#
+bx !#
+bx ~"
+bx }"
+bx |"
+bx {"
+bx z"
+bx y"
+bx x"
+bx w"
+bx v"
+bx u"
+bx t"
+bx s"
+bx r"
+bx q"
+bx p"
+bx o"
+bx n"
+bx m"
+bx l"
+bx k"
+bx j"
+bx i"
+bx h"
+xg"
+xf"
+bx e"
+bx d"
+bx c"
+bx b"
+xa"
+bx `"
+bx _"
+bx ^"
+bx ]"
+bx \"
+bx ["
+bx Z"
+bx Y"
+bx X"
+bx W"
+bx V"
+bx U"
+bx T"
+bx S"
+zR"
+bx Q"
+bx P"
+bx O"
+b10000000 N"
+bx M"
+xL"
+bx K"
+bx J"
+bx I"
+bx ="
+bx <"
+bx ;"
+bx %"
+bx $"
+bx #"
+bx ""
+bx v
+bx u
+bx t
+bx s
+bx r
+bx q
+xp
+xo
+xn
+xm
+xl
+xk
+xj
+xi
+bx h
+bx g
+bx f
+bx e
+bx d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+bx ]
+bx \
+bx [
+bx Z
+bx Y
+bx X
+xW
+bx V
+xU
+xT
+xS
+xR
+xQ
+xP
+xO
+xN
+xM
+xL
+bx K
+bx J
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+bx C
+bx B
+bx A
+0@
+bx ?
+0>
+1=
+x<
+x;
+x:
+x9
+x8
+x7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+bx /
+bx .
+1-
+x,
+x+
+bx *
+bx )
+bx (
+bx '
+z&
+x%
+z$
+bx #
+1"
+0!
+$end
+#5
+1o
+b0 f
+b0 ""
+b0 O"
+0a"
+b0 g
+b0 u
+b0 E
+b0 q"
+b0 6#
+b0 F
+b0 r"
+b0 7#
+0R
+0S
+0T
+0Q
+1L
+1M
+0U
+b10 V
+b10 I"
+b10 i"
+0O
+0P
+0N
+1%
+b0 h
+b0 t
+0f"
+0g"
+b0 ?
+b0 ##
+b0 &#
+b0 B
+b0 o"
+b0 K
+b0 <"
+b0 j"
+b0 A
+b0 p"
+b0 G
+b0 l"
+b0 C
+b0 e"
+b0 n"
+b0 3#
+b0 D
+b0 d"
+b0 m"
+b0 2#
+b0 I
+b0 ="
+b0 k"
+b0 e
+b0 P"
+b11 r
+b11 v
+b11 ;"
+b0 Z
+b0 Q"
+b0 c"
+b0x00 0
+b0x00 0#
+b0 s
+b0 J"
+0W
+b0 X
+b0 `"
+b0 Y
+b0 _"
+b0 (
+b0 5#
+b100 .
+b100 !#
+b0 /
+b0 '#
+b0 1#
+b0 J
+b0 $#
+b0 H
+b0 s"
+b0 %#
+b0 [
+b0 ~"
+b0 a
+b0 x"
+b0 ]
+b0 T"
+b0 ]"
+b0 |"
+b0 ^
+b0 ^"
+b0 {"
+b0 d
+b0 $"
+b0 u"
+b0 c
+b0 #"
+b0 v"
+b0 \
+b0 }"
+b0 _
+b0 S"
+b0 z"
+b0 `
+b0 y"
+b0 b
+b0 w"
+b0 q
+b0 %"
+b0 t"
+0n
+0l
+0m
+0i
+0k
+0p
+0j
+b0 3
+b0 W"
+b0 Z"
+b0 5
+b0 V"
+b0 1
+b0 Y"
+b0 ["
+b0 b"
+b0 +#
+b0 2
+b0 X"
+b0 6
+b0 K"
+b0 U"
+b0 )#
+0<
+0;
+09
+0:
+07
+08
+1L"
+b0 '
+b0 \"
+b0 h"
+b0 /#
+b0 4#
+b0 )
+b0 .#
+b0 *
+b0 -#
+0+
+0,
+1!
+#10
+0!
+b100000000010000000000000000000 ?
+b100000000010000000000000000000 ##
+b100000000010000000000000000000 &#
+0"
+#15
+1U
+1L
+0M
+b0 V
+b0 I"
+b0 i"
+b110 r
+b110 v
+b110 ;"
+b1000 C
+b1000 e"
+b1000 n"
+b1000 3#
+b1000 I
+b1000 ="
+b1000 k"
+bx ?
+bx ##
+bx &#
+bx 0
+bx 0#
+bx )
+bx .#
+1<
+b10 q
+b10 %"
+b10 t"
+1i
+1j
+b100000000010000000000000000000 J
+b100000000010000000000000000000 $#
+b100 H
+b100 s"
+b100 %#
+bx .
+bx !#
+b0x00 /
+b0x00 '#
+b0x00 1#
+1!
+#20
+0!
+#25
+xa"
+bx E
+bx q"
+bx 6#
+bx F
+bx r"
+bx 7#
+0L
+0U
+bx B
+bx o"
+bx K
+bx <"
+bx j"
+bx A
+bx p"
+bx G
+bx l"
+bx C
+bx e"
+bx n"
+bx 3#
+bx D
+bx d"
+bx m"
+bx 2#
+bx I
+bx ="
+bx k"
+0%
+b11 r
+b11 v
+b11 ;"
+b1000 Z
+b1000 Q"
+b1000 c"
+bx /
+bx '#
+bx 1#
+bx J
+bx $#
+bx H
+bx s"
+bx %#
+b1000 ]
+b1000 T"
+b1000 ]"
+b1000 |"
+b1000 c
+b1000 #"
+b1000 v"
+b100 e
+b100 P"
+b100 b
+b100 w"
+b0 q
+b0 %"
+b0 t"
+1p
+0j
+17
+1!
+#30
+0!
+#35
+xo
+bx f
+bx ""
+bx O"
+0a"
+bx g
+bx u
+xf"
+bx h
+bx t
+bx Z
+bx Q"
+bx c"
+x%
+1+
+b1000 3
+b1000 W"
+b1000 Z"
+b100 5
+b100 V"
+b1000 1
+b1000 Y"
+b1000 ["
+b1000 b"
+b1000 +#
+bx [
+bx ~"
+bx a
+bx x"
+bx ]
+bx T"
+bx ]"
+bx |"
+bx ^
+bx ^"
+bx {"
+bx d
+bx $"
+bx u"
+bx c
+bx #"
+bx v"
+bx \
+bx }"
+bx _
+bx S"
+bx z"
+bx `
+bx y"
+bx e
+bx P"
+bx b
+bx w"
+0i
+0p
+1!
+#40
+0!
+#45
+0f"
+xg"
+bx s
+bx J"
+bx 3
+bx W"
+bx Z"
+bx 5
+bx V"
+bx 1
+bx Y"
+bx ["
+bx b"
+bx +#
+bx 2
+bx X"
+bx 6
+bx K"
+bx U"
+bx )#
+x<
+07
+b1000 '
+b1000 \"
+b1000 h"
+b1000 /#
+b1000 4#
+1!
+#50
+0!
+#55
+0g"
+bx (
+bx 5#
+bx '
+bx \"
+bx h"
+bx /#
+bx 4#
+bx *
+bx -#
+0+
+1!
+#60
+0!
+#65
+1!
+#70
+0!
+#75
+1!
+#80
+0!
+#85
+1!
+#90
+0!
+#95
+1!
+#100
+0!
+#105
+1!
+#110
+0!
+b100000 #
